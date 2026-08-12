@@ -10,7 +10,7 @@ instance, so it works out of the box.
 
 import os
 
-from matomo_pylib import MatomoClient, MatomoError
+from matomopy import MatomoClient, MatomoError
 
 BASE_URL = os.environ.get("MATOMO_URL", "https://demo.matomo.cloud/")
 TOKEN = os.environ.get("MATOMO_TOKEN")  # None => anonymous access

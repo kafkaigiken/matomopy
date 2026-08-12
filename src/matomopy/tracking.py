@@ -78,7 +78,7 @@ class MatomoTracker(SessionContextMixin):
         self.token_auth = token_auth
         self.timeout = timeout
         self.verify_ssl = verify_ssl
-        self.user_agent = user_agent or "matomo-pylib"
+        self.user_agent = user_agent or "matomopy"
         self.accept_language = accept_language
         self.session = session or requests.Session()
 

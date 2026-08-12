@@ -5,7 +5,7 @@ from unittest import mock
 
 import pytest
 
-from matomo_pylib import (
+from matomopy import (
     MatomoConfigError,
     MatomoHTTPError,
     MatomoTracker,
