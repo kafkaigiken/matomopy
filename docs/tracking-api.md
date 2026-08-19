@@ -226,7 +226,7 @@ tracker.track_page_view("Imported page")
 
 ## Bulk tracking
 
-For high volume or batch imports, queue requests and send them in a single HTTP POST instead of one request each:
+For high volume or batch imports, queue requests and send them in a single HTTP POST instead of one request each (single requests are also sent as a POST, with the parameters in the form body — this keeps `token_auth` out of the URL so privileged parameters like `cip` are honoured):
 
 ```python
 tracker.enable_bulk_tracking()
