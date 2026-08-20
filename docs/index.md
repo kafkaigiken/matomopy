@@ -1,7 +1,7 @@
 # Matomo HTTP API — documentation
 
 Matomo exposes two public HTTP APIs. This documentation explains both and how
-to use them from the accompanying Python library, `matomo-pylib`.
+to use them from the accompanying Python library, `matomopy`.
 
 | API | Purpose | Library entry point |
 |-----|---------|---------------------|
@@ -17,7 +17,7 @@ to use them from the accompanying Python library, `matomo-pylib`.
 ## Install the library
 
 ```bash
-pip install matomo-pylib
+pip install matomopy
 ```
 
 Requires Python 3.8+. The only dependency is `requests`.
@@ -25,7 +25,7 @@ Requires Python 3.8+. The only dependency is `requests`.
 ## 60-second example
 
 ```python
-from matomo_pylib import MatomoClient
+from matomopy import MatomoClient
 
 matomo = MatomoClient(
     "https://analytics.example.org",

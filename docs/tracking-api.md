@@ -17,7 +17,7 @@ https://analytics.example.org/matomo.php?idsite=1&rec=1&...
 Two parameters are always required: `idsite` (the site) and `rec=1` (record this request). The library adds them for you:
 
 ```python
-from matomo_pylib import MatomoTracker, generate_visitor_id
+from matomopy import MatomoTracker, generate_visitor_id
 
 tracker = MatomoTracker(
     "https://analytics.example.org",   # or .../matomo.php
@@ -84,7 +84,7 @@ tracker.track_goal(id_goal=1, revenue=49.90)
 A complete server-side conversion — for example recording the "New Registrations" goal (ID `1`) after a signup finishes on your backend:
 
 ```python
-from matomo_pylib import MatomoTracker, generate_visitor_id
+from matomopy import MatomoTracker, generate_visitor_id
 
 tracker = MatomoTracker("https://analytics.example.org", id_site=1)
 tracker.set_visitor_id(generate_visitor_id())
@@ -98,7 +98,7 @@ If the person is a **known visitor**, reuse *their* existing 16-character visito
 > **Tip — create the manual goal from Python too.** You don't have to click through the UI. The [Reporting API](reporting-api.md) can create it with `matchAttribute="manually"`:
 > 
 > ```python
->from matomo_pylib import MatomoClient
+>from matomopy import MatomoClient
 > 
 > matomo = MatomoClient("https://analytics.example.org", token_auth="YOUR_TOKEN")
 >id_goal = matomo.Goals.addGoal(
@@ -226,7 +226,7 @@ tracker.track_page_view("Imported page")
 
 ## Bulk tracking
 
-For high volume or batch imports, queue requests and send them in a single HTTP POST instead of one request each:
+For high volume or batch imports, queue requests and send them in a single HTTP POST instead of one request each (single requests are also sent as a POST, with the parameters in the form body — this keeps `token_auth` out of the URL so privileged parameters like `cip` are honoured):
 
 ```python
 tracker.enable_bulk_tracking()
@@ -243,7 +243,7 @@ Bulk requests are sent as a JSON body. If the tracker has a `token_auth`, it aut
 Tracking methods raise `MatomoHTTPError` if the server returns a non-2xx status; transport failures raise it too. Successful tracking returns the `requests.Response` (Matomo replies with `204 No Content` because the library sends `send_image=0`).
 
 ```python
-from matomo_pylib import MatomoHTTPError
+from matomopy import MatomoHTTPError
 
 try:
     tracker.track_page_view("Home")

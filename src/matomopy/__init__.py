@@ -2,7 +2,7 @@
 
 Typical usage::
 
-    from matomo_pylib import MatomoClient
+    from matomopy import MatomoClient
 
     matomo = MatomoClient(
         "https://analytics.example.org",

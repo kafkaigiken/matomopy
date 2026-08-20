@@ -1,7 +1,7 @@
 """Internal HTTP plumbing shared by the reporting and tracking clients.
 
-Both :class:`~matomo_pylib.client.MatomoClient` and
-:class:`~matomo_pylib.tracking.MatomoTracker` talk to Matomo over HTTP and
+Both :class:`~matomopy.client.MatomoClient` and
+:class:`~matomopy.tracking.MatomoTracker` talk to Matomo over HTTP and
 need the same low-level pieces: normalising the base URL into an endpoint,
 mapping transport failures onto :class:`MatomoHTTPError`, raising on 4xx/5xx
 responses, and session/context-manager lifecycle. Keeping that plumbing here

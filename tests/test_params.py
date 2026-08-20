@@ -1,6 +1,6 @@
 """Unit tests for the parameter-encoding helpers."""
 
-from matomo_pylib.params import encode_params
+from matomopy.params import encode_params
 
 
 def test_scalars_and_aliases():

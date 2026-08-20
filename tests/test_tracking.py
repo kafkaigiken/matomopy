@@ -5,7 +5,7 @@ from unittest import mock
 
 import pytest
 
-from matomo_pylib import (
+from matomopy import (
     MatomoConfigError,
     MatomoHTTPError,
     MatomoTracker,
@@ -27,7 +27,7 @@ def make_response(status=200, text="", json_data=None):
 def make_tracker(**kwargs):
     session = mock.Mock()
     session.get.return_value = make_response(status=204)
-    session.post.return_value = make_response(status=200, json_data={})
+    session.post.return_value = make_response(status=204)
     tracker = MatomoTracker(
         "https://analytics.example.org",
         id_site=1,
@@ -38,7 +38,10 @@ def make_tracker(**kwargs):
 
 
 def sent_params(session):
-    return dict(session.get.call_args.kwargs["params"])
+    # Single tracking requests are sent as a POST with the parameters in the
+    # form body (keeps token_auth out of the URL so privileged params like
+    # `cip` are honoured).
+    return dict(session.post.call_args.kwargs["data"])
 
 
 def test_endpoint_normalization():

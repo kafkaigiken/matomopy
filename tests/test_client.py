@@ -4,7 +4,7 @@ from unittest import mock
 
 import pytest
 
-from matomo_pylib import (
+from matomopy import (
     MatomoAPIError,
     MatomoAuthenticationError,
     MatomoClient,

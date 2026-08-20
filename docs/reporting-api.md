@@ -18,7 +18,7 @@ https://analytics.example.org/index.php?module=API&method=<Module.action>&...
 With this library you never build that URL by hand — you point the client at the base URL and it derives the endpoint:
 
 ```python
-from matomo_pylib import MatomoClient
+from matomopy import MatomoClient
 
 matomo = MatomoClient(
     "https://analytics.example.org",   # any of: root, root/, .../index.php
@@ -253,7 +253,7 @@ client's) authorises the whole batch.
 The Reporting API often signals a *logical* error with an HTTP `200` and a body like `{"result": "error", "message": "..."}`. This library detects that and raises, so you never have to inspect the payload yourself:
 
 ```python
-from matomo_pylib import (
+from matomopy import (
     MatomoError, MatomoAPIError, MatomoAuthenticationError, MatomoHTTPError,
 )
 

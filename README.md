@@ -1,4 +1,4 @@
-# matomo-pylib
+# matomopy
 
 A small, dependency-light Python client for the two public HTTP APIs of
 [Matomo](https://matomo.org):
@@ -15,7 +15,7 @@ It works with any self-hosted Matomo instance or Matomo Cloud. The only runtime 
 ## Installation
 
 ```bash
-pip install matomo-pylib
+pip install matomopy
 ```
 
 Or, from a checkout of this directory:
@@ -31,7 +31,7 @@ Requires Python 3.8+.
 ## Quick start — reading data
 
 ```python
-from matomo_pylib import MatomoClient
+from matomopy import MatomoClient
 
 matomo = MatomoClient(
     "https://analytics.example.org",   # your Matomo URL
@@ -119,7 +119,7 @@ results = matomo.bulk_request([
 ## Quick start — sending data
 
 ```python
-from matomo_pylib import MatomoTracker, generate_visitor_id
+from matomopy import MatomoTracker, generate_visitor_id
 
 tracker = MatomoTracker(
     "https://analytics.example.org",
@@ -175,7 +175,7 @@ All exceptions subclass `MatomoError`:
 | `MatomoConfigError` | The client was configured incorrectly. |
 
 ```python
-from matomo_pylib import MatomoError
+from matomopy import MatomoError
 
 try:
     matomo.VisitsSummary.get(period="day", date="today")

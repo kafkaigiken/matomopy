@@ -78,7 +78,7 @@ class MatomoTracker(SessionContextMixin):
         self.token_auth = token_auth
         self.timeout = timeout
         self.verify_ssl = verify_ssl
-        self.user_agent = user_agent or "matomo-pylib"
+        self.user_agent = user_agent or "matomopy"
         self.accept_language = accept_language
         self.session = session or requests.Session()
 
@@ -434,11 +434,17 @@ class MatomoTracker(SessionContextMixin):
         return self._send(params)
 
     def _send(self, params: Dict[str, Any]) -> Any:
-        """Issue a single tracking GET request."""
+        """Issue a single tracking request.
+
+        Sent as a POST with the parameters in the form body. This keeps
+        ``token_auth`` out of the URL — Matomo only honours privileged
+        parameters such as ``cip`` (visitor IP override) when the token is
+        sent in the body, not in the query string.
+        """
         response = send(
-            lambda: self.session.get(
+            lambda: self.session.post(
                 self.endpoint,
-                params=encode_params(params),
+                data=encode_params(params),
                 headers={"User-Agent": self.user_agent},
                 timeout=self.timeout,
                 verify=self.verify_ssl,
